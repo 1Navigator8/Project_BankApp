@@ -3,9 +3,9 @@ spring:
     banner-mode: off
 
   datasource:
-    url: datasource.url
-    username: datasource.username
-    password: datasource.password
+    url: ${datasource.url}
+    username: ${datasource.username}
+    password: ${datasource.password}
 
   jpa:
     show-sql: false
@@ -13,10 +13,9 @@ spring:
       ddl-auto: none
 
   liquibase:
-    change-log: classpath:/db/changelog/changelog-master.xml
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
 
 app:
-  description: ${description}
-  version: ${version}
+
   server:
     url: ${app.server.url}

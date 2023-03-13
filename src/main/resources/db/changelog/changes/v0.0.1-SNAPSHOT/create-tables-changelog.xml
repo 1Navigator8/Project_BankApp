@@ -5,7 +5,7 @@
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
 
-    <changeSet id="create managers table" author="ivan_zubenko">
+    <changeSet id="create managers table" author="IvanZubenko">
         <preConditions onFail="CONTINUE" onFailMessage="Table managers already exists">
             <not>
                 <tableExists tableName="managers"/>
@@ -33,7 +33,7 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="create clients table" author="ivan_zubenko">
+    <changeSet id="create clients table" author="IvanZubenko">
         <preConditions onFail="CONTINUE" onFailMessage="Table clients already exists">
             <not>
                 <tableExists tableName="clients"/>
@@ -70,7 +70,7 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="create accounts table" author="ivan_zubenko">
+    <changeSet id="create accounts table" author="IvanZubenko">
         <preConditions onFail="CONTINUE" onFailMessage="Table accounts already exists">
             <not>
                 <tableExists tableName="accounts"/>
@@ -105,7 +105,7 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="create transactions table" author="ivan_zubenko">
+    <changeSet id="create transactions table" author="IvanZubenko">
         <preConditions onFail="CONTINUE" onFailMessage="Table transactions already exists">
             <not>
                 <tableExists tableName="transactions"/>
@@ -136,7 +136,7 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="create products table" author="ivan_zubenko">
+    <changeSet id="create products table" author="IvanZubenko">
         <preConditions onFail="CONTINUE" onFailMessage="Table products already exists">
             <not>
                 <tableExists tableName="products"/>
@@ -173,7 +173,7 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="create agreements table" author="ivan_zubenko">
+    <changeSet id="create agreements table" author="IvanZubenko">
         <preConditions onFail="CONTINUE" onFailMessage="Table agreements already exists">
             <not>
                 <tableExists tableName="agreements"/>

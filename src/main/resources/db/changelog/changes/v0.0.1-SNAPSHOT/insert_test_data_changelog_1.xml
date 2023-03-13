@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="insert manager1 data into managers table" author="IvanZubenko">
+        <insert tableName="managers">
+            <column name="id" value="ma001"/>
+            <column name="first_name" value="Alan"/>
+            <column name="last_name" value="Bee"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert manager2 data into managers table" author="IvanZubenko">
+        <insert tableName="managers">
+            <column name="id" value="ma002"/>
+            <column name="first_name" value="Bea"/>
+            <column name="last_name" value="Arnold"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert manager3 data into managers table" author="IvanZubenko">
+        <insert tableName="managers">
+            <column name="id" value="ma003"/>
+            <column name="first_name" value="Carla"/>
+            <column name="last_name" value="Cardinale"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert manager4 data into managers table" author="IvanZubenko">
+        <insert tableName="managers">
+            <column name="id" value="ma004"/>
+            <column name="first_name" value="Diana"/>
+            <column name="last_name" value="Erlin"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert client1 data into clients table" author="IvanZubenko">
+        <insert tableName="clients">
+            <column name="id" value="с0001"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="tax_code" value="1111111"/>
+            <column name="first_name" value="Angelinka"/>
+            <column name="last_name" value="Jolie"/>
+            <column name="email" value="angel.jo@gmai.com"/>
+            <column name="address" value="96011 Wilshire Blvd. Beverly Hills, CA 90210  United States."/>
+            <column name="phone" value="(310) 111-111-1"/>
+            <column name="manager_id" value="m001"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert client2 data into clients table" author="IvanZubenko">
+        <insert tableName="clients">
+            <column name="id" value="с0002"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="tax_code" value="2222222"/>
+            <column name="first_name" value="Britne "/>
+            <column name="last_name" value="Spearsova"/>
+            <column name="email" value="br.spe@gmail.com"/>
+            <column name="address" value=" 9 rue du Gabian 98000 Monaco. B.P. 665 98014"/>
+            <column name="phone" value="(377) 222-222-2"/>
+            <column name="manager_id" value="m001"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert client3 data into clients table" author="IvanZubenko">
+        <insert tableName="clients">
+            <column name="id" value="с0003"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="tax_code" value="3333333"/>
+            <column name="first_name" value="Colin "/>
+            <column name="last_name" value="Farrellin"/>
+            <column name="email" value="cofarr@gmail.com"/>
+            <column name="address" value=" 8687 Melrose Avenue, 100th Floor, Los Angeles, California 90069 United States."/>
+            <column name="phone" value="(303) 333-333-3"/>
+            <column name="manager_id" value="m002"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert client4 data into clients table" author="IvanZubenko">
+        <insert tableName="clients">
+            <column name="id" value="c0004"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="tax_code" value="4444444"/>
+            <column name="first_name" value="Monica "/>
+            <column name="last_name" value="Belluccina"/>
+            <column name="email" value="sandy.kirlin@hotmail.com"/>
+            <column name="address" value="AS Talents , rue de Lille 75007 Paris France"/>
+            <column name="phone" value="(303) 444-444-4"/>
+            <column name="manager_id" value="m002"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert account1 data into accounts table" author="IvanZubenko">
+        <insert tableName="accounts">
+            <column name="id" value="a0001"/>
+            <column name="name" value="MyAccount"/>
+            <column name="type" value="ESCROW"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="balance" value="500000.00"/>
+            <column name="currency_code" value="USD"/>
+            <column name="client_id" value="с0001"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert account2 data into accounts table" author="IvanZubenko">
+        <insert tableName="accounts">
+            <column name="id" value="a0002"/>
+            <column name="name" value="MyAccountMy"/>
+            <column name="type" value="ESCROW"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="balance" value="700000.00"/>
+            <column name="currency_code" value="USD"/>
+            <column name="client_id" value="c0002"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert account3 data into accounts table" author="IvanZubenko">
+        <insert tableName="accounts">
+            <column name="id" value="a0003"/>
+            <column name="name" value="MyAccountI"/>
+            <column name="type" value="ESCROW"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="balance" value="300000.00"/>
+            <column name="currency_code" value="USD"/>
+            <column name="client_id" value="c0003"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert account4 data into accounts table" author="IvanZubenko">
+        <insert tableName="accounts">
+            <column name="id" value="a0004"/>
+            <column name="name" value="MyAccountOk"/>
+            <column name="type" value="ESCROW"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="balance" value="900000.00"/>
+            <column name="currency_code" value="USD"/>
+            <column name="client_id" value="c0004"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert transaction1 data into transactions table" author="IvanZubenko">
+        <insert tableName="transactions">
+            <column name="id" value="t0001"/>
+            <column name="type" value="PAYMENT"/>
+            <column name="amount" value="1000.00"/>
+            <column name="description" value="Monthly rent payment"/>
+            <column name="debit_account_id" value="a0001"/>
+            <column name="credit_account_id" value="a0002"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert transaction2 data into transactions table" author="IvanZubenko">
+        <insert tableName="transactions">
+            <column name="id" value="t0002"/>
+            <column name="type" value="PAYMENT"/>
+            <column name="amount" value="500.00"/>
+            <column name="description" value="Monthly rent payment"/>
+            <column name="debit_account_id" value="a0003"/>
+            <column name="credit_account_id" value="a0002"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert transaction3 data into transactions table" author="IvanZubenko">
+        <insert tableName="transactions">
+            <column name="id" value="t0003"/>
+            <column name="type" value="PAYMENT"/>
+            <column name="amount" value="2000.00"/>
+            <column name="description" value="Monthly rent payment"/>
+            <column name="debit_account_id" value="a0003"/>
+            <column name="credit_account_id" value="a0004"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert transaction4 data into transactions table" author="IvanZubenko">
+        <insert tableName="transactions">
+            <column name="id" value="t0004"/>
+            <column name="type" value="PAYMENT"/>
+            <column name="amount" value="5000.00"/>
+            <column name="description" value="Monthly rent payment"/>
+            <column name="debit_account_id" value="a0002"/>
+            <column name="credit_account_id" value="a0004"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert product1 data into products table" author="IvanZubenko">
+        <insert tableName="products">
+            <column name="id" value="p0001"/>
+            <column name="name" value="Rustic Concrete Watch Bank Product"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="currency_code" value="USD"/>
+            <column name="interest_rate" value="0.05"/>
+            <column name="limit" value="1000"/>
+            <column name="manager_id" value="m001"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert product2 data into products table" author="IvanZubenko">
+        <insert tableName="products">
+            <column name="id" value="p0002"/>
+            <column name="name" value="Heavy Duty Aluminum Knife Bank Product"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="currency_code" value="USD"/>
+            <column name="interest_rate" value="0.05"/>
+            <column name="limit" value="500"/>
+            <column name="manager_id" value="m002"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert product3 data into products table" author="IvanZubenko">
+        <insert tableName="products">
+            <column name="id" value="p0003"/>
+            <column name="name" value="Practical Paper Shirt Bank Product"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="currency_code" value="USD"/>
+            <column name="interest_rate" value="0.05"/>
+            <column name="limit" value="200"/>
+            <column name="manager_id" value="m003"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert product4 data into products table" author="IvanZubenko">
+        <insert tableName="products">
+            <column name="id" value="p0004"/>
+            <column name="name" value="Enormous Steel Gloves Bank Product"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="currency_code" value="USD"/>
+            <column name="interest_rate" value="0.05"/>
+            <column name="limit" value="100"/>
+            <column name="manager_id" value="m004"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert agreement1 data into agreements table" author="IvanZubenko">
+        <insert tableName="agreements">
+            <column name="id" value="ag0001"/>
+            <column name="interest_rate" value="0.025"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="sum" value="100000.00"/>
+            <column name="product_id" value="p0001"/>
+            <column name="account_id" value="a0001"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert agreement2 data into agreements table" author="IvanZubenko">
+        <insert tableName="agreements">
+            <column name="id" value="ag0002"/>
+            <column name="interest_rate" value="0.025"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="sum" value="10000.00"/>
+            <column name="product_id" value="p0002"/>
+            <column name="account_id" value="a0002"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert agreement3 data into agreements table" author="IvanZubenko">
+        <insert tableName="agreements">
+            <column name="id" value="ag0003"/>
+            <column name="interest_rate" value="0.025"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="sum" value="5500.00"/>
+            <column name="product_id" value="p0003"/>
+            <column name="account_id" value="a0003"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert agreement4 data into agreements table" author="IvanZubenko">
+        <insert tableName="agreements">
+            <column name="id" value="ag0004"/>
+            <column name="interest_rate" value="0.040"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="sum" value="25000.00"/>
+            <column name="product_id" value="p0004"/>
+            <column name="account_id" value="a0004"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
