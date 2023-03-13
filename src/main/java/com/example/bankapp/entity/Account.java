@@ -59,13 +59,11 @@ public class Account {
     @OneToMany(mappedBy = "account", cascade = {MERGE, PERSIST, REFRESH}, orphanRemoval = true, fetch = FetchType.LAZY)
     private Set<Transaction> creditTransactions;
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Account account = (Account) o;
-        return Objects.equals(name, account.name);
+        if (!(o instanceof Account account)) return false;
+        return Objects.equals(id, account.id) && Objects.equals(name, account.name);
     }
 
     @Override

@@ -54,7 +54,7 @@ public class Agreement {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, createdAt);
+        return Objects.hash(id);
     }
 
     @Override

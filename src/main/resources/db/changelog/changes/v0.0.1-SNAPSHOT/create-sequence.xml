@@ -9,7 +9,7 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
 
-    <changeSet id="create sequence for UUID generator" author="ivan_zubenko">
+    <changeSet id="create sequence for UUID generator" author="IvanZubenko">
         <createSequence sequenceName="seq_for_uuid_generator"
                         schemaName="public"
                         cycle="true"/>
