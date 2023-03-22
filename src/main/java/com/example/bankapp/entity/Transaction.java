@@ -8,54 +8,57 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.UUID;
-
-import static jakarta.persistence.CascadeType.*;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "transactions")
+
+@Table(name = "transaction")
 
 public class Transaction {
+    @GeneratedValue(generator = "UUID", strategy = GenerationType.IDENTITY)
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "com.example.bankapplication.generator.UuidTimeSequenceGenerator")
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private UUID id;
-    @Column(name = "type")
-    private int type;
-    @Column(name = "amount")
-    private double amount;
-    @Column(name = "description")
-    private String description;
-    @Column(name = "created_at")
-    private Timestamp createdAt;
 
-    @ManyToOne(cascade = {MERGE, PERSIST, REFRESH},fetch = FetchType.LAZY)
-    @JoinColumn(name = "debit_account_id", referencedColumnName = "id")
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "debit_account_id", nullable = false)
     private Account debitAccount;
 
-    @ManyToOne(cascade = {MERGE, PERSIST, REFRESH},fetch = FetchType.LAZY)
-    @JoinColumn(name = "credit_account_id", referencedColumnName = "id")
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "credit_account_id", nullable = false)
     private Account creditAccount;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type", nullable = false)
+    private TransactionType type;
+
+    @Column(name = "amount", nullable = false, precision = 4)
+    private BigDecimal amount;
+
+    @Column(name = "description", nullable = false, length = 250)
+    private String description;
+
+    @Column(name = "created_at", nullable = false)
+    private Timestamp createdAt;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Transaction that = (Transaction) o;
-        return id == that.id && Objects.equals(createdAt, that.createdAt);
+        return id.equals(that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, createdAt);
+        return Objects.hash(id);
     }
 
     @Override

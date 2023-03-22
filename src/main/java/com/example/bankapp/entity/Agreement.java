@@ -1,12 +1,15 @@
 package com.example.bankapp.entity;
 
+import com.example.bankapp.entity.enums.AccountProductStatus;
 import jakarta.persistence.*;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.UUID;
@@ -16,45 +19,49 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "agreements")
+@Table(name = "agreement")
 
 public class Agreement {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "com.example.bankapplication.generator.UuidTimeSequenceGenerator")
-    @Column(name = "id")
+    @GeneratedValue(generator = "UUID", strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private UUID id;
-    @Column(name = "interest_rate")
-    private double interestRate;
-    @Column(name = "status")
-    private int status;
-    @Column(name = "sum")
-    private double sum;
-    @Column(name = "created_at")
-    private Timestamp createdAt;
-    @Column(name = "updated_at")
-    private Timestamp updatedAt;
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "account_id")
+    private Account account;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "account_id", referencedColumnName = "id")
-    private Account account;
 
+    @Column(name = "interest_rate", nullable = false, precision = 4)
+    private BigDecimal interestRate;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private AccountProductStatus status;
+
+    @Column(name = "sum", nullable = false, precision = 2)
+    private BigDecimal sum;
+
+    @Column(name = "created_at", nullable = false)
+    private Timestamp createdAt;
+
+    @Column(name = "updated_at", nullable = false)
+    private Timestamp updatedAt;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Agreement agreement = (Agreement) o;
-        return id.equals(agreement.id);
+        return id.equals(agreement.id) && account.equals(agreement.account);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, account);
     }
 
     @Override

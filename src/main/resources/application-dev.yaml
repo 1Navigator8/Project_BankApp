@@ -3,9 +3,9 @@ spring:
     banner-mode: off
 
   datasource:
-    url:
-    username:
-    password:
+    url: jdbc:mysql://localhost:3306/bank_app
+    username: user
+    password: user
 
   jpa:
     show-sql: false
@@ -15,7 +15,12 @@ spring:
   liquibase:
     change-log: classpath:/db/changelog/changelog-master.xml
 app:
-  description: Dev version of credit service
+  description: Dev version of bank_app
   version: 0.0.1-SNAPSHOT
   server:
     stage: dev
+
+
+
+
+

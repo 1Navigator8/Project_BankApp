@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<databaseChangeLog
-        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
-        http://www.liquibase.org/xml/ns/dbchangelog-ext
-        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
 
+    <include file="/db/changelog/changes/v0.0.1-SNAPSHOT/drop-tables-changelog.xml"/>
+    <include file="/db/changelog/changes/v0.0.1-SNAPSHOT/create-tables-changelog.xml"/>
+    <include file="/db/changelog/changes/v0.0.1-SNAPSHOT/insert-managers-changelog.xml"/>
+    <include file="/db/changelog/changes/v0.0.1-SNAPSHOT/insert-test-data-changelog-1.xml"/>
+    <include file="/db/changelog/changes/v0.0.1-SNAPSHOT/create-sequence.xml"/>
 
-
-
-    <changeSet id="0" author="admin">
-
-    </changeSet>
 </databaseChangeLog>

@@ -3,9 +3,9 @@ spring:
     banner-mode: off
 
   datasource:
-    url: ${datasource.url}
-    username: ${datasource.username}
-    password: ${datasource.password}
+    url: jdbc:mysql://localhost:3306/bank_app
+    username: user
+    password: user
 
   jpa:
     show-sql: false
@@ -16,6 +16,14 @@ spring:
     change-log: classpath:/db/changelog/db.changelog-master.yaml
 
 app:
-
   server:
     url: ${app.server.url}
+
+
+
+
+
+
+
+
+

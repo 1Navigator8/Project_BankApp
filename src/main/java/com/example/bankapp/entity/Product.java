@@ -1,64 +1,70 @@
 package com.example.bankapp.entity;
+
 import com.example.bankapp.entity.enums.ProductStatus;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
-import static jakarta.persistence.CascadeType.*;
+
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "products")
+@Table(name = "product")
 
 public class Product {
+    @GeneratedValue(generator = "UUID", strategy = GenerationType.IDENTITY)
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "com.example.bankapplication.generator.UuidTimeSequenceGenerator")
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private UUID id;
-    @Column(name = "name")
-    private String name;
-    @Column(name = "status")
-    private int status;
-    @Column(name = "currency_code")
-    private int currencyCode;
-    @Column(name = "interest_rate")
-    private double interestRate;
-    @Column(name = "limit")
-    private int limit;
-    @Column(name = "created_at")
-    private Timestamp createdAt;
-    @Column(name = "updated_at")
-    private Timestamp updatedAt;
-
-    @ManyToOne(cascade = {MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "manager_id", referencedColumnName = "id")
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "manager_id")
     private Manager manager;
 
-    @OneToMany(mappedBy = "product", cascade = {MERGE, PERSIST, REFRESH}, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Agreement> agreements;
+    @Column(name = "name", nullable = false, length = 70)
+    private String name;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private ProductStatus status;
+
+    @Column(name = "currency_code", nullable = false)
+    private Integer currencyCode;
+
+    @Column(name = "interest_rate", nullable = false, precision = 4)
+    private BigDecimal interestRate;
+
+    @Column(name = "limit", nullable = false)
+    private Integer limit;
+
+    @Column(name = "created_at", nullable = false)
+    private Timestamp createdAt;
+
+    @Column(name = "updated_at", nullable = false)
+    private Timestamp updatedAt;
+
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "product")
+    @ToString.Exclude
+    private Set<Agreement> agreements;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return Objects.equals(name, product.name);
+        return id.equals(product.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(id);
     }
 
     @Override

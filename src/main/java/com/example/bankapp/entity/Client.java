@@ -1,69 +1,75 @@
 package com.example.bankapp.entity;
 
+import com.example.bankapp.entity.enums.ClientStatus;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
-import static jakarta.persistence.CascadeType.*;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "clients")
+@Table(name = "client")
 
 public class Client {
+    @GeneratedValue(generator = "UUID", strategy = GenerationType.IDENTITY)
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "com.example.bankapplication.generator.UuidTimeSequenceGenerator")
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private UUID id;
 
-    @Column(name = "status")
-    private int status;
-    @Column(name = "tax_code")
-    private String taxCode;
-    @Column(name = "firstname")
-    private String firstName;
-    @Column(name = "lastname")
-    private String lastName;
-    @Column(name = "email")
-    private String email;
-    @Column(name = "address")
-    private String address;
-    @Column(name = "phone")
-    private String phone;
-    @Column(name = "created_at")
-    private Timestamp createdAt;
-    @Column(name = "updated_at")
-    private Timestamp updatedAt;
-    @OneToMany(mappedBy = "client", cascade = {MERGE, PERSIST, REFRESH}, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Account> accounts;
-
-    @ManyToOne(cascade = {MERGE, PERSIST, REFRESH},fetch = FetchType.LAZY)
-    @JoinColumn(name = "manager_id", referencedColumnName = "id")
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "manager_id")
     private Manager manager;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private ClientStatus status;
+
+    @Column(name = "tax_code", nullable = false, length = 20)
+    private String taxCode;
+
+    @Column(name = "first_name", nullable = false, length = 50)
+    private String firstName;
+
+    @Column(name = "last_name", nullable = false, length = 50)
+    private String lastName;
+
+    @Column(name = "email", nullable = false, length = 60)
+    private String email;
+
+    @Column(name = "address", nullable = false, length = 80)
+    private String address;
+
+    @Column(name = "phone", nullable = false, length = 20)
+    private String phone;
+
+    @Column(name = "created_at", nullable = false)
+    private Timestamp createdAt;
+
+    @Column(name = "updated_at", nullable = false)
+    private Timestamp updatedAt;
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "client")
+    @ToString.Exclude
+    private Set<Account> accountList;
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Client client = (Client) o;
-        return Objects.equals(getId(), client.getId());
+        return id.equals(client.id) && email.equals(client.email) && phone.equals(client.phone);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id,firstName,lastName);
+        return Objects.hash(id, email, phone);
     }
 
     @Override

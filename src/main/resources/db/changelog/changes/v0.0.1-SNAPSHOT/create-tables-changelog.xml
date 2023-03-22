@@ -2,206 +2,160 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+                        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
 
-
-    <changeSet id="create managers table" author="IvanZubenko">
-        <preConditions onFail="CONTINUE" onFailMessage="Table managers already exists">
+    <changeSet id="create-manager-table" author="IvanZubenko">
+        <preConditions onFail="CONTINUE" onFailMessage="Table manager already exists">
             <not>
-                <tableExists tableName="managers"/>
+                <tableExists tableName="manager"/>
             </not>
         </preConditions>
-        <createTable tableName="managers">
-            <column name="id" type="uuid">     <!-- UUID OR INTEGER???????????-->
-                <constraints primaryKey="true" nullable="false"/>
+        <createTable tableName="manager">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true"/>
             </column>
-            <column name="first_name" type="VARCHAR(50)">
-                <constraints nullable="false" unique="false"/>
-            </column>
-            <column name="last_name" type="VARCHAR(50)">
+            <column name="first_name" type="varchar(50)"/>
+            <column name="last_name" type="varchar(50)"/>
+            <column name="status" type="tinyint(1)"/>
+            <column name="created_at" type="timestamp">
                 <constraints nullable="false"/>
             </column>
-            <column name="status" type="VARCHAR(50)">
+            <column name="updated_at" type="timestamp">
                 <constraints nullable="false"/>
-            </column>
-            <column name="created_at" type="TIMESTAMP" defaultValueDate="CURRENT_TIMESTAMP">
-<!--                <constraints nullable="false"/>-->
-            </column>
-            <column name="updated_at" type="TIMESTAMP">
-                <!--                <constraints nullable="false"/>-->
             </column>
         </createTable>
     </changeSet>
 
-    <changeSet id="create clients table" author="IvanZubenko">
-        <preConditions onFail="CONTINUE" onFailMessage="Table clients already exists">
+    <changeSet id="create-client-table" author="IvanZubenko">
+        <preConditions onFail="CONTINUE" onFailMessage="Table client already exists">
             <not>
-                <tableExists tableName="clients"/>
+                <tableExists tableName="client"/>
             </not>
         </preConditions>
-        <createTable tableName="clients">
-            <column name="id" type="uuid"> <!-- UUID OR INTEGER???????????-->
-                <constraints primaryKey="true" nullable="false"/>
+        <createTable tableName="client">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true"/>
             </column>
-            <column name="status" type="VARCHAR(20)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="tax_code" type="VARCHAR(16)">
-                <constraints nullable="false" unique="true"/>
-            </column>
-            <column name="first_name" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="last_name" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="email" type="VARCHAR(60)">
-                <constraints nullable="false" unique="true"/>
-            </column>
-            <column name="address" type="VARCHAR(80)"/> <!-- NULL???????????-->
-            <column name="phone" type="VARCHAR(20)"/> <!-- NULL???????????-->
-            <column name="created_at" type="TIMESTAMP" defaultValueDate="CURRENT_TIMESTAMP">
-                <constraints nullable="false"/>
-            </column>
-            <column name="updated_at" type="TIMESTAMP"/> <!-- NULL???????????-->
-            <column name="manager_id" type="uuid"> <!-- UUID OR INTEGER???????????-->
-                <constraints foreignKeyName="manager_id" references="managers(id)" nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-
-    <changeSet id="create accounts table" author="IvanZubenko">
-        <preConditions onFail="CONTINUE" onFailMessage="Table accounts already exists">
-            <not>
-                <tableExists tableName="accounts"/>
-            </not>
-        </preConditions>
-        <createTable tableName="accounts">
-            <column name="id" type="uuid"> <!-- UUID OR INTEGER???????????-->
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="name" type="VARCHAR(100)">
-                <constraints nullable="false" unique="true"/>
-            </column>
-            <column name="type" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="status" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="balance" type="DECIMAL(15,2)"> <!--???????????-->
-                <constraints nullable="false"/>
-            </column>
-            <column name="currency_code" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="created_at" type="TIMESTAMP" defaultValueDate="CURRENT_TIMESTAMP">
-                <constraints nullable="false"/>
-            </column>
-            <column name="updated_at" type="TIMESTAMP"/> <!-- NULL???????????-->
-            <column name="client_id" type="uuid"> <!-- UUID OR INTEGER???????????-->
-                <constraints foreignKeyName="client_id" references="clients(id)" nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-
-    <changeSet id="create transactions table" author="IvanZubenko">
-        <preConditions onFail="CONTINUE" onFailMessage="Table transactions already exists">
-            <not>
-                <tableExists tableName="transactions"/>
-            </not>
-        </preConditions>
-        <createTable tableName="transactions">
-            <column name="id" type="uuid"> <!-- UUID OR INTEGER???????????-->
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="type" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="amount" type="DECIMAL(12,4)"> <!--???????????-->
-                <constraints nullable="false"/>
-            </column>
-            <column name="description" type="VARCHAR(255)">
+            <column name="manager_id" type="uuid">
                 <constraints nullable="true"/>
             </column>
-            <column name="created_at" type="TIMESTAMP" defaultValueDate="CURRENT_TIMESTAMP">
-<!--                <constraints nullable="false"/> -->
+            <column name="status" type="tinyint(1)"/>
+            <column name="tax_code" type="varchar(20)"/>
+            <column name="first_name" type="varchar(50)"/>
+            <column name="last_name" type="varchar(50)"/>
+            <column name="email" type="varchar(60)"/>
+            <column name="address" type="varchar(80)"/>
+            <column name="phone" type="varchar(20)"/>
+            <column name="created_at" type="timestamp"/>
+            <column name="updated_at" type="timestamp"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="client" baseColumnNames="manager_id"
+                                 constraintName="fk_manager_id_client"
+                                 referencedTableName="manager" referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet author="IvanZubenko" id="create_account_table">
+        <preConditions onFail="CONTINUE" onFailMessage="Table account already exists">
+            <not>
+                <tableExists tableName="account"/>
+            </not>
+        </preConditions>
+        <createTable tableName="account">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true"/>
             </column>
-            <column name="debit_account_id" type="uuid"> <!-- UUID OR INTEGER???????????-->
-                <constraints foreignKeyName="debit_account_id" references="accounts(id)"/> <!-- NULL???????????-->
+            <column name="client_id" type="uuid">
+                <constraints foreignKeyName="fk_client_account" referencedTableName="client"
+                             referencedColumnNames="id"/>
             </column>
-            <column name="credit_account_id" type="uuid"> <!-- UUID OR INTEGER???????????-->
-                <constraints foreignKeyName="credit_account_id" references="accounts(id)"/> <!-- NULL???????????-->
+            <column name="name" type="varchar(100)"/>
+            <column name="type" type="tinyint(1)"/>
+            <column name="status" type="tinyint(1)"/>
+            <column name="balance" type="decimal(15,2)"/>
+            <column name="currency_code" type="tinyint(2)"/>
+            <column name="created_at" type="timestamp"/>
+            <column name="updated_at" type="timestamp"/>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet author="IvanZubenko" id="create_product_table">
+        <preConditions onFail="CONTINUE" onFailMessage="Table product already exists">
+            <not>
+                <tableExists tableName="product"/>
+            </not>
+        </preConditions>
+        <createTable tableName="product">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="manager_id" type="uuid">
+                <constraints foreignKeyName="true" referencedTableName="manager" referencedColumnNames="id"/>
+            </column>
+            <column name="name" type="varchar(70)"/>
+            <column name="status" type="tinyint(1)"/>
+            <column name="currency_code" type="int(2)"/>
+            <column name="interest_rate" type="decimal(6,4)"/>
+            <column name="limit" type="int"/>
+            <column name="created_at" type="timestamp"/>
+            <column name="updated_at" type="timestamp">
+                <constraints/>
             </column>
         </createTable>
     </changeSet>
 
-    <changeSet id="create products table" author="IvanZubenko">
-        <preConditions onFail="CONTINUE" onFailMessage="Table products already exists">
+    <changeSet author="IvanZubenko" id="create_agreement_table">
+        <preConditions onFail="CONTINUE" onFailMessage="Table agreement already exists">
             <not>
-                <tableExists tableName="products"/>
+                <tableExists tableName="agreement"/>
             </not>
         </preConditions>
-        <createTable tableName="products">
-            <column name="id" type="uuid"> <!-- UUID OR INTEGER???????????-->
-                <constraints primaryKey="true" nullable="false"/>
+        <createTable tableName="agreement">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true"/>
             </column>
-            <column name="name" type="VARCHAR(70)">
-                <constraints nullable="false" unique="true"/>
+            <column name="account_id" type="uuid">
+                <constraints foreignKeyName="fk_agreement_account_id" referencedTableName="account"
+                             referencedColumnNames="id"/>
             </column>
-            <column name="status" type="VARCHAR(50)">
-                <constraints nullable="false"/>
+            <column name="product_id" type="uuid">
+                <constraints foreignKeyName="fk_agreement_product_id" referencedTableName="product"
+                             referencedColumnNames="id"/>
             </column>
-            <column name="currency_code" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="interest_rate" type="DECIMAL(6,4)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="limit" type="INTEGER">
-                <constraints nullable="false"/>
-            </column>
-            <column name="created_at" type="TIMESTAMP" defaultValueDate="CURRENT_TIMESTAMP">
-<!--                <constraints nullable="false"/>--> <!-- NULL???????????-->
-            </column>
-            <column name="updated_at" type="TIMESTAMP">
-<!--                <constraints nullable="false"/>--> <!-- NULL???????????-->
-            </column>
-            <column name="manager_id" type="uuid"> <!-- UUID OR INTEGER???????????-->
-                <constraints foreignKeyName="manager_id" references="managers(id)" nullable="false"/>
+            <column name="interest_rate" type="decimal(6,4)" defaultValueNumeric="0.0000"/>
+            <column name="status" type="tinyint(1)" defaultValueNumeric="0"/>
+            <column name="sum" type="decimal(15,2)" defaultValueNumeric="0.00"/>
+            <column name="created_at" type="timestamp"/>
+            <column name="updated_at" type="timestamp">
+                <constraints/>
             </column>
         </createTable>
     </changeSet>
 
-    <changeSet id="create agreements table" author="IvanZubenko">
-        <preConditions onFail="CONTINUE" onFailMessage="Table agreements already exists">
+
+    <changeSet author="IvanZubenko" id="create_transaction_table">
+        <preConditions onFail="CONTINUE" onFailMessage="Table transaction already exists">
             <not>
-                <tableExists tableName="agreements"/>
+                <tableExists tableName="transaction"/>
             </not>
         </preConditions>
-        <createTable tableName="agreements">
-            <column name="id" type="uuid"> <!-- UUID OR INTEGER???????????-->
-                <constraints primaryKey="true" nullable="false" />
+        <createTable tableName="transaction">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true"/>
             </column>
-            <column name="interest_rate" type="DECIMAL(6,4)"> <!-- ???????????-->
-                <constraints nullable="false" />
+            <column name="debit_account_id" type="uuid">
+                <constraints foreignKeyName="fk_debit_account_id" referencedTableName="account"
+                             referencedColumnNames="id"/>
             </column>
-            <column name="status" type="VARCHAR(50)">
-                <constraints nullable="false" />
+            <column name="credit_account_id" type="uuid">
+                <constraints foreignKeyName="fk_credit_account_id" referencedTableName="account"
+                             referencedColumnNames="id"/>
             </column>
-            <column name="sum" type="DECIMAL(15,2)"> <!-- ???????????-->
-                <constraints nullable="false" />
-            </column>
-            <column name="created_at" type="TIMESTAMP" defaultValueDate="CURRENT_TIMESTAMP">
-<!--                <constraints nullable="false" />--> <!-- NULL???????????-->
-            </column>
-            <column name="updated_at" type="TIMESTAMP" /> <!-- NULL???????????-->
-
-            <column name="product_id" type="uuid"> <!-- UUID OR INTEGER???????????-->
-                <constraints foreignKeyName="product_id" references="products(id)" nullable="false" />
-            </column>
-            <column name="account_id" type="uuid"> <!-- UUID OR INTEGER???????????-->
-                <constraints foreignKeyName="account_id" references="accounts(id)" nullable="false" />
+            <column name="type" type="tinyint(1)"/>
+            <column name="amount" type="decimal(12,4)"/>
+            <column name="description" type="varchar(250)"/>
+            <column name="created_at" type="timestamp">
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
