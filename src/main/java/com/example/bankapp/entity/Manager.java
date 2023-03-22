@@ -1,24 +1,24 @@
 package com.example.bankapp.entity;
+
 import com.example.bankapp.entity.enums.ManagerStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.sql.Timestamp;
-import java.util.Objects;
-import java.util.Set;
-import java.util.UUID;
+import java.time.LocalDateTime;
+import java.util.*;
 
 
 @Entity
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "manager")
 
 public class Manager {
-    @GeneratedValue(generator = "UUID", strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
     private UUID id;
@@ -38,13 +38,24 @@ public class Manager {
     @Column(name = "updated_at", nullable = false)
     private Timestamp updatedAt;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "manager")
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "manager", fetch = FetchType.LAZY)
     @ToString.Exclude
     private Set<Client> clients;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "manager")
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "manager", fetch = FetchType.LAZY)
     @ToString.Exclude
     private Set<Product> products;
+
+    public Manager(String firstName, String lastName, ManagerStatus status) {
+        this.id = UUID.randomUUID();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.status = status;
+        this.createdAt = Timestamp.valueOf(LocalDateTime.now());
+        this.updatedAt = Timestamp.valueOf(LocalDateTime.now());
+
+
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -57,17 +68,5 @@ public class Manager {
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return "Manager{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", status=" + status +
-                ", createAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                '}';
     }
 }

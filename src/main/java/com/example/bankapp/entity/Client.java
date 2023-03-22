@@ -6,10 +6,8 @@ import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.sql.Timestamp;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
+
 
 
 @Entity
@@ -25,7 +23,7 @@ public class Client {
     @Column(name = "id", nullable = false)
     private UUID id;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "manager_id")
     private Manager manager;
 
@@ -56,9 +54,11 @@ public class Client {
 
     @Column(name = "updated_at", nullable = false)
     private Timestamp updatedAt;
+
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "client")
     @ToString.Exclude
     private Set<Account> accountList;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -1,16 +1,16 @@
 package com.example.bankapp.entity.enums;
 
 public enum AccountType {
-    CREDIT(0),
-    DEPOSIT(1),
-    CURRENT(2);
-    private final int value;
+    CREDIT("CREDIT"),
+    DEPOSIT("DEPOSIT"),
+    CURRENT("CURRENT");
+    private final String value;
 
-    AccountType(int value) {
+    AccountType(String value) {
         this.value = value;
     }
 
-    public int getValue() {
+    public String getValue() {
         return value;
     }
 }

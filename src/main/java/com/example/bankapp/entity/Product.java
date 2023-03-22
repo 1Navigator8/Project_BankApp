@@ -24,7 +24,8 @@ public class Product {
     @Id
     @Column(name = "id", nullable = false)
     private UUID id;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "manager_id")
     private Manager manager;
 
@@ -42,7 +43,7 @@ public class Product {
     private BigDecimal interestRate;
 
     @Column(name = "limit", nullable = false)
-    private Integer limit;
+    private Integer limit;///*!!!!!!
 
     @Column(name = "created_at", nullable = false)
     private Timestamp createdAt;

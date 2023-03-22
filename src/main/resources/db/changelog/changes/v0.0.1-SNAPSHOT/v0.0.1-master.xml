@@ -6,7 +6,6 @@
 
     <include file="/db/changelog/changes/v0.0.1-SNAPSHOT/drop-tables-changelog.xml"/>
     <include file="/db/changelog/changes/v0.0.1-SNAPSHOT/create-tables-changelog.xml"/>
-    <include file="/db/changelog/changes/v0.0.1-SNAPSHOT/insert-managers-changelog.xml"/>
     <include file="/db/changelog/changes/v0.0.1-SNAPSHOT/insert-test-data-changelog-1.xml"/>
     <include file="/db/changelog/changes/v0.0.1-SNAPSHOT/create-sequence.xml"/>
 

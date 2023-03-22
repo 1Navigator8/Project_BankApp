@@ -1,16 +1,18 @@
 package com.example.bankapp.entity.enums;
 
 public enum ClientStatus {
-    ACTIVE(0),
-    PENDING(1),
-    REMOVED(2),
-    BLOCKED(3);
-    private final int value;
-    ClientStatus(int value){
+    ACTIVE("ACTIVE"),
+    PENDING("PENDING"),
+    REMOVED("REMOVED"),
+    BLOCKED("BLOCKED");
+    private final String value;
+
+    ClientStatus(String value) {
         this.value = value;
     }
 
-    public int getValue() {
+    public String getValue() {
         return value;
     }
+
 }
