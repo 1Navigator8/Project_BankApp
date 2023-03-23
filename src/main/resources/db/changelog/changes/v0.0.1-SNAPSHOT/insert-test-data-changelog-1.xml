@@ -4,75 +4,39 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
 
-
-    <changeSet id="insert-managers-data" author="IvanZubenko">
-        <insert tableName="manager">
-            <column name="id" valueComputed="UUID_TO_BIN('a6642ea6-16ff-4003-9725-1')"/>
-            <column name="first_name">Anna</column>
-            <column name="last_name">Bell</column>
-            <column name="status">"ACTIVE"</column>
-            <column name="created_at">2023-02-23 10:00:00</column>
-            <column name="updated_at">2023-02-24 11:00:00</column>
-        </insert>
-        <insert tableName="manager">
-            <column name="id" valueComputed="UUID_TO_BIN('a6642ea6-16ff-4003-9725-2')"/>
-            <column name="first_name">Claudia</column>
-            <column name="last_name">Dori</column>
-            <column name="status">"PENDING"</column>
-            <column name="created_at">2023-02-23 11:00:00</column>
-            <column name="updated_at">2023-02-24 13:00:00</column>
-        </insert>
-        <insert tableName="manager">
-            <column name="id" valueComputed="UUID_TO_BIN('a6642ea6-16ff-4003-9725-3')"/>
-            <column name="first_name">Elena</column>
-            <column name="last_name">Morozova</column>
-            <column name="status">"ACTIVE"</column>
-            <column name="created_at">2023-02-23 10:00:00</column>
-            <column name="updated_at">2023-02-24 11:00:00</column>
-        </insert>
-        <insert tableName="manager">
-            <column name="id" valueComputed="UUID_TO_BIN('a6642ea6-16ff-4003-9725-4')"/>
-            <column name="first_name">Irina</column>
-            <column name="last_name">Blume</column>
-            <column name="status">"PENDING"</column>
-            <column name="created_at">2023-02-25 11:00:00</column>
-            <column name="updated_at">2023-02-26 12:00:00</column>
-        </insert>
-    </changeSet>
     <changeSet id="insert-client-data" author="IvanZubenko">
         <insert tableName="client">
-            <column name="id" valueComputed="UUID_TO_BIN('03f6e55d-467e-4a34-86ed-ed188ef59c21')"/>
-            <column name="manager_id" valueComputed="UUID_TO_BIN('a6642ea6-16ff-4003-9725-1')"/>
-            <column name="status">"ACTIVE"</column>
+            <column name="id">c0001</column>
+            <column name="manager_id">001</column>
+            <column name="status">1</column>
             <column name="tax_code">t0001</column>
-            <column name="first_name">Angelina</column>
+            <column name="first_name">Angelina </column>
             <column name="last_name">Merkelova</column>
             <column name="email">a.merk@google.com</column>
             <column name="address">Boxhagener Str. 00, 10245 Berlin Germany</column>
             <column name="phone">0151-111-111</column>
-            <column name="created_at">2023-02-29 13:13:13a</column>
         </insert>
     </changeSet>
 
     <changeSet id="insert-account-data" author="IvanZubenko">
         <insert tableName="account">
-            <column name="id" valueComputed="UUID_TO_BIN('13030d5e-72f5-4d8e-b82f-c88f879093ce')"/>
-            <column name="client_id" valueComputed="UUID_TO_BIN('03f6e55d-467e-4a34-86ed-ed188ef59c21')"/>
+            <column name="id">de49-0001</column>
+            <column name="client_id">c0001</column>
             <column name="name">Checking Account</column>
-            <column name="type" value="CREDIT"/>
-            <column name="status" value="ACTIVE"/>
+            <column name="type">1</column>
+            <column name="status">1</column>
             <column name="balance">5000.00</column>
-            <column name="currency_code" value="EUR"/>
+            <column name="currency_code">1</column>
         </insert>
     </changeSet>
 
     <changeSet id="insert-product-data" author="IvanZubenko">
         <insert tableName="product">
-            <column name="id" valueComputed="UUID_TO_BIN('a1eaaea4-2282-4050-8cc7-55220f0bf778')"/>
-            <column name="manager_id" valueComputed="UUID_TO_BIN('a6642ea6-16ff-4003-9725-1')"/>
+            <column name="id">p000000001</column>
+            <column name="manager_id">001</column>
             <column name="name">Credit</column>
-            <column name="status" value="ACTIVE"/>
-            <column name="currency_code" value="EUR"/>
+            <column name="status">1</column>
+            <column name="currency_code">1</column>
             <column name="interest_rate">0.75</column>
             <column name="limit">100000</column>
         </insert>
@@ -80,23 +44,80 @@
 
     <changeSet id="insert-agreement-data" author="IvanZubenko">
         <insert tableName="agreement">
-            <column name="id" valueComputed="UUID_TO_BIN('9c1d641c-66ca-4baf-bab2-147eab8ac0f8')"/>
-            <column name="account_id" valueComputed="UUID_TO_BIN('13030d5e-72f5-4d8e-b82f-c88f879093ce')"/>
-            <column name="product_id" valueComputed="UUID_TO_BIN('a1eaaea4-2282-4050-8cc7-55220f0bf778')"/>
-            <column name="interest_rate">1.000</column>
+            <column name="id">ag0000001</column>
+            <column name="account_id">de49-0001</column>
+            <column name="product_id">p000000001</column>
+            <column name="interest_rate">100</column>
         </insert>
     </changeSet>
 
     <changeSet author="IvanZubenko" id="insert-transaction-data">
         <insert tableName="transaction">
-            <column name="id" valueComputed="UUID_TO_BIN('5293248d-c3aa-4ce5-9ac8-57cb05479621')"/>
-            <column name="debit_account_id" valueComputed="UUID_TO_BIN('13030d5e-72f5-4d8e-b82f-c88f879093ce')"/>
-            <column name="credit_account_id" valueComputed="UUID_TO_BIN('13030d5e-72f5-4d8e-b82f-c88f879093ce')"/>
-            <column name="type" value="NEW"/>
+            <column name="id">tr0000001</column>
+            <column name="debit_account_id">DE00-0000-0000-0000-0001</column>
+            <column name="credit_account_id">DE00-0000-0000-0000-0001</column>
+            <column name="type">0</column>
             <column name="amount">300.0000</column>
-            <column name="description">Transaction for testing</column>
-            <column name="created_at">2022-01-01 12:00:00</column>
+            <column name="description">Transaction for credit</column>
+            <column name="created_at">2022-03-01 12:00:00</column>
+        </insert>
+    </changeSet>
+    <changeSet id="insert-client-data" author="IvanZubenko">
+        <insert tableName="client">
+            <column name="id">c0002</column>
+            <column name="manager_id">001</column>
+            <column name="status">1</column>
+            <column name="tax_code">t0002</column>
+            <column name="first_name">Dieter  </column>
+            <column name="last_name">Bohlenov</column>
+            <column name="email">d.bo@yahoo.com</column>
+            <column name="address">Metzendorfer Weg 00 21224 Rosengarten  Germany</column>
+            <column name="phone">0151-222-222</column>
         </insert>
     </changeSet>
 
+    <changeSet id="insert-account-data" author="IvanZubenko">
+        <insert tableName="account">
+            <column name="id">de49-0002</column>
+            <column name="client_id">c0002</column>
+            <column name="name">Checking Account</column>
+            <column name="type">1</column>
+            <column name="status">1</column>
+            <column name="balance">3000.00</column>
+            <column name="currency_code">1</column>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert-product-data" author="IvanZubenko">
+        <insert tableName="product">
+            <column name="id">p000000002</column>
+            <column name="manager_id">002</column>
+            <column name="name">Credit</column>
+            <column name="status">1</column>
+            <column name="currency_code">1</column>
+            <column name="interest_rate">0.75</column>
+            <column name="limit">100000</column>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert-agreement-data" author="IvanZubenko">
+        <insert tableName="agreement">
+            <column name="id">ag0000002</column>
+            <column name="account_id">de49-0002</column>
+            <column name="product_id">p000000002</column>
+            <column name="interest_rate">100</column>
+        </insert>
+    </changeSet>
+
+    <changeSet author="IvanZubenko" id="insert-transaction-data">
+        <insert tableName="transaction">
+            <column name="id">tr0000002</column>
+            <column name="debit_account_id">DE00-0000-0000-0000-0002</column>
+            <column name="credit_account_id">DE00-0000-0000-0000-0002</column>
+            <column name="type">0</column>
+            <column name="amount">300.0000</column>
+            <column name="description">Transaction for credit</column>
+            <column name="created_at">2022-03-09 11:00:00</column>
+        </insert>
+    </changeSet>
 </databaseChangeLog>
