@@ -5,10 +5,8 @@ import com.example.bankapp.dto.ClientDTO;
 import com.example.bankapp.entity.Client;
 import com.example.bankapp.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +28,7 @@ public class ClientController {
     }
 
     @GetMapping(path = "{findClient}")
+ //   @ResponseStatus(HttpStatus.OK)
     public ClientDTO showClient(@PathVariable ("findClient") String name) {
         return clientService.findClientByName(name);
     }
