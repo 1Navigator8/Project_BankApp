@@ -4,11 +4,11 @@ import com.example.bankapp.entity.enums.ManagerStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
-
+import org.hibernate.annotations.Type;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.*;
-
+import java.util.UUID;
 
 @Entity
 @Getter

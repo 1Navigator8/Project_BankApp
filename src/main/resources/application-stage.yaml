@@ -1,5 +1,0 @@
-app:
-  description: Stage version of bank_app
-  version: 0.0.1-SNAPSHOT
-  server:
-    stage: stage

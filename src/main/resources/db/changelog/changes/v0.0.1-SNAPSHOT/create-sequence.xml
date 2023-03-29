@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<databaseChangeLog
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
 
-        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
-
-
-    <changeSet id="create_sequence" author="IvanZubenko">
-
-        <createSequence sequenceName="my_sequence" startValue="1" incrementBy="1" schemaName="public"
-                        cycle="true"/>
+    <changeSet author="IvanZubenko" id="create_sequence">
+        <createSequence sequenceName="my_sequence" startValue="1" incrementBy="1"/>
     </changeSet>
 </databaseChangeLog>
-
-
